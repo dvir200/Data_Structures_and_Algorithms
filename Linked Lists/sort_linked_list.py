@@ -44,7 +44,7 @@ class linked_list:
 
 if __name__ == '__main__':
   user_list = linked_list()
-  for x in range(4):
+  for x in range(5):
     user_input = input()
     user_input = int(user_input)
     user_list.sort(user_input)
