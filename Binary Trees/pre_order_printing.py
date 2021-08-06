@@ -4,13 +4,13 @@ class node:
       self.left = None
       self.right = None
 
-def display(root):
+def display_PreOrder(root):
   if root is None:
     return None
   else:
     print(str(root.data))
-    display(root.left)
-    display(root.right)
+    display_PreOrder(root.left)
+    display_PreOrder(root.right)
     return
 
 if __name__ == '__main__':
@@ -27,5 +27,5 @@ if __name__ == '__main__':
   print(str(root.left.data))
   print(str(root.right.data)) """
 
-  display(root)
+  display_PreOrder(root)
  
