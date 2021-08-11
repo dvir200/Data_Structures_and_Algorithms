@@ -4,15 +4,14 @@ class node:
       self.left = None
       self.right = None
 
-def count(root, counter = 1):
-  if root is None:
-    return
-  else:
-    count(root.left)
-    count(root.right)
-    counter = counter +1
-  return counter
 
+
+def count(root):
+  if root is None:
+    return 0
+  else:
+    return 1 + count(root.left) + count(root.right)
+    
 
 
 
