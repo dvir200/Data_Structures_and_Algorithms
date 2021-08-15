@@ -29,8 +29,13 @@ if __name__ == '__main__':
   root.left.left = node(4)
   root.left.right = node(10)
 
+  """ root = None """
+
   key = 10
 
   result = str(get_level(root, key))
 
-  print ("level of " + str(key) + " is: " + str(result))
+  if result == "0":
+    print("Binary tree is empty or data requested not existed")
+  else:
+    print ("level of " + str(key) + " is: " + str(result))
