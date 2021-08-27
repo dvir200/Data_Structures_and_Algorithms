@@ -16,7 +16,7 @@ class linkedList:
   def insertNode (self, name, age, role):
     if self.head == None:
       self.head = node(name, age, role)
-      return
+      return self
     else:
       tmp = self.head
       prev = None
@@ -24,13 +24,15 @@ class linkedList:
         prev = tmp
         tmp = tmp.next
       prev.next = node(name, age, role)
-      return
+      return self
   
   """ display the linked list in a given arr position """
   def display(self):
     tmp = self.head
     while tmp:
-      print(tmp.data)
+      print(tmp.name)
+      print(tmp.age)
+      print(tmp.role)
       tmp = tmp.next
     return
 
@@ -51,10 +53,11 @@ def exchangeToPos(name, arrLength):
 
 """ main function that will automate anything """
 def main(arr, name, age, role):
-  arr = initilize(arr, len(arr)-1)
+  lengthArr = len(arr)
+  arr = initilize(arr, lengthArr)
   pos = exchangeToPos(name, len(arr))
   arr[pos].insertNode(name, age, role)
-  return
+  return dataArr
 
 
 if __name__ == '__main__':
@@ -64,6 +67,12 @@ if __name__ == '__main__':
   """ lengthArr = 6 """
 
   dataArr = main(dataArr, "Zoe", 21, "Head of marketing team")
+  """ wanted = dataArr[2]
+  wanted.display() """
   dataArr = main(dataArr, "Sebastian", 34, "Head of IT team")
+
+  wanted = dataArr[2]
+  wanted.display()
+
 
 
