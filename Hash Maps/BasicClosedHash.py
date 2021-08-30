@@ -7,8 +7,9 @@ class node:
       self.next = None
 
 
-""" basis for the linked list """
+""" linked list class"""
 class linkedList:
+  """ basis for the linked list """
   def __init__(self):
       self.head = None
   
@@ -29,10 +30,14 @@ class linkedList:
   """ display the linked list in a given arr position """
   def display(self):
     tmp = self.head
+    counter = 0
     while tmp:
-      print(tmp.name)
-      print(tmp.age)
-      print(tmp.role)
+      counter += 1
+      print("Employee " + str(counter) + ":")
+      print("Name: " + tmp.name)
+      print("Age: " + str(tmp.age))
+      print("Role: " + tmp.role)
+      print()
       tmp = tmp.next
     return
 
@@ -41,6 +46,24 @@ def initilize(arr, length):
   for x in range (len(arr)):
     arr[x] = linkedList()
   return arr
+
+""" function that searches the array for the given name """
+def search(arr, EmployeeName):
+  pos = exchangeToPos(EmployeeName, len(arr))
+  CurrentPos = arr[pos]
+  if CurrentPos.head is None:
+    print()
+    print("Employee name not found")
+  else:
+    tmp = CurrentPos.head
+    while tmp:
+      if (tmp.name == EmployeeName):
+        print()
+        print("Credentials about employee " + str(EmployeeName) + " found:")
+        print("Name: " + tmp.name)
+        print("Age: " + str(tmp.age))
+        print("Role: " + tmp.role)
+      tmp = tmp.next
 
 
 """ exchange the name of the employee to a ASCII code """
@@ -53,8 +76,6 @@ def exchangeToPos(name, arrLength):
 
 """ main function that will automate anything """
 def main(arr, name, age, role):
-  lengthArr = len(arr)
-  arr = initilize(arr, lengthArr)
   pos = exchangeToPos(name, len(arr))
   arr[pos].insertNode(name, age, role)
   return dataArr
@@ -66,13 +87,21 @@ if __name__ == '__main__':
   print(len(dataArr))
   """ lengthArr = 6 """
 
+  dataArr = initilize(dataArr, len(dataArr))
+
   dataArr = main(dataArr, "Zoe", 21, "Head of marketing team")
   """ wanted = dataArr[2]
   wanted.display() """
   dataArr = main(dataArr, "Sebastian", 34, "Head of IT team")
+  dataArr = main(dataArr, "Sebastian", 25, "Developer")
 
-  wanted = dataArr[2]
-  wanted.display()
+  """ wanted = dataArr[2]
+  wanted.display() """
+
+  print()
+  print()
+
+  search(dataArr, "Marc")
 
 
 
