@@ -48,7 +48,7 @@ def initilize(arr, length):
   return arr
 
 """ function that searches the array for the given name """
-def search(arr, EmployeeName):
+def search(arr, EmployeeName, EmployeeAge):
   pos = exchangeToPos(EmployeeName, len(arr))
   CurrentPos = arr[pos]
   if CurrentPos.head is None:
@@ -57,13 +57,46 @@ def search(arr, EmployeeName):
   else:
     tmp = CurrentPos.head
     while tmp:
-      if (tmp.name == EmployeeName):
+      if (tmp.name == EmployeeName) & (tmp.age == EmployeeAge):
         print()
         print("Credentials about employee " + str(EmployeeName) + " found:")
         print("Name: " + tmp.name)
         print("Age: " + str(tmp.age))
         print("Role: " + tmp.role)
+        return
       tmp = tmp.next
+    print()
+    print("Employee name not found")
+
+
+""" function that removes a node given the employee's name and age (for authentication) """
+def removeNode(arr, EmployeeName, EmployeeAge):
+  pos = exchangeToPos(EmployeeName, len(arr))
+  CurrentPos = arr[pos]
+  if CurrentPos.head is None:
+    print()
+    print("Employee name does not exist")
+  else:
+    tmp = CurrentPos.head
+    prev = None
+    while tmp:
+      if (tmp.name == EmployeeName) & (tmp.age == EmployeeAge):
+        if prev is None:
+          CurrentPos.head = tmp.next
+          """ tmp = None """
+          print("Deletion Successful")
+          return arr
+        else:
+          prev.next = tmp.next
+          tmp = None
+          print("Deletion Successful")
+          return arr
+      else:
+        prev = tmp
+        tmp = tmp.next
+    print()
+    print("Employee name does not exist")
+
 
 
 """ exchange the name of the employee to a ASCII code """
@@ -94,14 +127,23 @@ if __name__ == '__main__':
   wanted.display() """
   dataArr = main(dataArr, "Sebastian", 34, "Head of IT team")
   dataArr = main(dataArr, "Sebastian", 25, "Developer")
+  dataArr = main(dataArr, "Sebastian", 21, "Intern")
+  dataArr = main(dataArr, "Romain", 34, "Head of Support")
+  dataArr = main(dataArr, "Dvir", 25, "Developer")
 
   """ wanted = dataArr[2]
   wanted.display() """
 
   print()
-  print()
 
-  search(dataArr, "Marc")
+  search(dataArr, "Marc", 50)
+
+  print()
+  removeNode(dataArr, "Sebastian", 26)
+
+  wanted = dataArr[4]
+  wanted.display()
+
 
 
 
