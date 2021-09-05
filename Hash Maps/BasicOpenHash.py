@@ -13,19 +13,30 @@ def ExchangeToPos(name, ArrLength):
   result = result % ArrLength
   return result
 
+
 def insert(arr, pos, PersonObj):
+  if arr[pos] is None:
+    arr[pos] = PersonObj
+    return arr
+  else:
+    try:
+      insert(arr, pos +1, PersonObj)
+    except:
+      pos = 0
+      insert(arr, pos, PersonObj) 
+
+""" def insert(arr, pos, PersonObj):
   if arr[pos] is True:
-    while arr[pos] is not False:
-      pos = pos +1
-      """ if arr[pos] is None:
+    while arr[pos] is not None:
+      if arr[pos +1] == IndexError:
         pos = 0
       else:
-        pos = pos +1 """
+        pos = pos +1
     arr[pos] = PersonObj
     return arr
   else:
     arr[pos] = PersonObj
-    return arr
+    return arr """
 
 
 def main (arr, PersonObj):
@@ -35,14 +46,20 @@ def main (arr, PersonObj):
 
 if __name__ == '__main__':
 
-  dataArr = [None, None, None, None, None, None, None, None, None, None]
+  dataArr = [None, None, None, None]
   person1 = Person("Dvir", 18, "Developer")
   person2 = Person("Sebastian", 25, "Head of Marketing")
+  person3 = Person("Sebastian", 26, "Head of support")
+  person4 = Person("Sebastian", 31, "Developer")
   main(dataArr, person1)
   main(dataArr, person2)
+  main(dataArr, person3)
+  main(dataArr, person4)
 
-  wanted = dataArr[2]
-  print()
+  wanted = dataArr[0]
+  print(wanted)
   print(wanted.name)
   print(wanted.age)
   print(wanted.role)
+
+
