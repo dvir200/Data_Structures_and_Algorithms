@@ -24,6 +24,19 @@ def insert(arr, pos, PersonObj):
     except:
       pos = 0
       insert(arr, pos, PersonObj) 
+  
+def searchCorrectPos(arr, pos, personName, personAge, startingPos):
+  if ((arr[pos].name == personName) & (arr[pos].age == personAge)):
+    return pos
+  if pos == startingPos:
+    return -1
+  else:
+    try:
+      searchCorrectPos(arr, pos+1, personName, personAge, startingPos)
+    except:
+      pos = 0
+      searchCorrectPos(arr, pos, personName, personAge, startingPos)
+  
 
 """ def insert(arr, pos, PersonObj):
   if arr[pos] is True:
@@ -37,6 +50,34 @@ def insert(arr, pos, PersonObj):
   else:
     arr[pos] = PersonObj
     return arr """
+
+def search (arr, personName, personAge):
+  arrLength = len(arr)
+  pos = ExchangeToPos(personName, arrLength)
+  if ((arr[pos].name == personName) & (arr[pos].age == personAge)):
+    print()
+    print("Employee found:")
+    print("Name: " + arr[pos].name)
+    print("Age: " + str(arr[pos].age))
+    print("Role: " + arr[pos].role)
+    return
+  else:
+    startingPos = pos
+    pos = searchCorrectPos(arr, pos+1, personName, personAge, startingPos)
+    if pos != -1:
+      print()
+      print("Employee found:")
+      print("Name: " + arr[pos].name)
+      print("Age: " + str(arr[pos].age))
+      print("Role: " + arr[pos].role)
+      return
+    else:
+      print()
+      print("Employee does not exist.")
+      return
+
+
+  
 
 
 def main (arr, PersonObj):
@@ -56,10 +97,12 @@ if __name__ == '__main__':
   main(dataArr, person3)
   main(dataArr, person4)
 
-  wanted = dataArr[0]
+  wanted = dataArr[3]
   print(wanted)
   print(wanted.name)
   print(wanted.age)
   print(wanted.role)
+
+  search(dataArr, "Sebastian", 31)
 
 
